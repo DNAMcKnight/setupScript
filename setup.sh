@@ -38,8 +38,12 @@ smbConfWrite () {
     force group = pi
     create mask = 0660
     directory mask = 0771
-    read only = no" >> smb.conf
+    read only = no" >> /etc/samba/smb.conf
+    echo "done!"
+    echo "resetting smbd"
     sudo systemctl restart smbd
+    sleep 5
+    echo "done"
 }
 
 
@@ -52,13 +56,11 @@ sambaSetup () {
     sudo mount /dev/sda1 /media/USBDrive
     echo "Downloading samba..."
     sudo apt-get install samba samba-common-bin
+    echo "creating backup for smb.conf"
     cp /etc/samba/smb.conf /etc/samba/smb.conf.bak  #Make a backup of the config file
-    echo "updating the smb.conf file"
-    smbConfWrite
     echo "Please enter samba password"
     read pass
     sudo smbpasswd -a $pass
-    $pass
     echo "Please run setup.sh {sambaConfig} to update the config"
 }
 
@@ -77,7 +79,7 @@ case "$1" in
         ;;
     
     sambaConfig)
-        sambaSetup
+        smbConfWrite
         exit 1
         ;;
     
@@ -87,7 +89,7 @@ case "$1" in
         exit 1
         ;;
     *)
-        echo "Usage: setup.sh {screen|micro|all}"
+        echo "Usage: setup.sh {screen|micro|samba|all}"
         exit 1
         ;;
 esac
