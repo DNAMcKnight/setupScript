@@ -5,19 +5,21 @@ screenSetup () {
     which screen > /dev/null
     if [ $? -eq 0 ]; then
         tput setaf 1; echo "Screen already installed!"
+        tput setaf 3;
     else
         echo "Installing screen..."
         sudo apt-get install screen
         tput setaf 2; echo "Screen installation complete!"
-        exit 1
     fi
 }
 
 
 microSetup () {
+    tput setaf 3;
     which micro > /dev/null
     if [ $? -eq 0 ]; then
         tput setaf 1; echo "micro already installed!"
+        tput setaf 3;
     else
         echo "Downloading micro..."
         curl https://getmic.ro | bash

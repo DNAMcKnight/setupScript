@@ -35,12 +35,13 @@ smbConfWrite () {
 
 
 sambaSetup () {
-    echo "Setting up samba"
+    tput setaf 3;
     which samba > /dev/null
     if [ $? -eq 0 ]; then
         tput setaf 1; echo "Samba already installed!"
-        exit 1
+        tput setaf 3;
     else
+        echo "Setting up samba"
         cd /media
         sudo mkdir USBDrive
         sudo umount /dev/sda1
@@ -56,7 +57,6 @@ sambaSetup () {
         read pass
         sudo smbpasswd -a $pass
         tput setaf 2; echo "Please run setup.sh {sambaConfig} to update the config"
-        exit 1
     fi
 }
 
