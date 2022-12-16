@@ -158,7 +158,7 @@ case "$1" in
         ;;
     all)
         yayChecker
-        # fontInstall
+        fontInstall
         qbitTorrentInstall
         obsInstall
         discordInstall
