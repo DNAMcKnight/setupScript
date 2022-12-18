@@ -1,4 +1,3 @@
-```sh
 #! /bin/sh
 
 ### BEGIN INIT INFO
@@ -15,7 +14,7 @@ case "$1" in
     echo "Starting bot.py"
         sleep 30
         cd /home/pi/KnightBot
-        screen -S knight -d -m bash -c 'python bot.py'
+        screen -S knight -d -m bash -c 'source venv/bin/activate && python bot.py'
     ;;
   stop)
     echo "Stopping bot.py"
@@ -29,4 +28,3 @@ case "$1" in
 esac
 
 exit 0
-```
