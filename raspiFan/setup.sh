@@ -1,6 +1,6 @@
 #! /bin/sh
 
-tput setaf 1; 
+tput setaf 3;
 echo "moving fancontrol.sh to /etc/init.d"
 sudo mv fancontrol.sh /etc/init.d/
 echo "moving fancontrol.py to /usr/local/bin"
