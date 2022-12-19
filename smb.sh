@@ -53,10 +53,14 @@ sambaSetup () {
         cp /etc/samba/smb.conf /etc/samba/smb.conf.bak  #Make a backup of the config file
         tput setaf 3; echo "updating the smb.conf file"
         smbConfWrite
-        tput setaf 5; echo "Please enter samba password"
-        read pass
-        sudo smbpasswd -a $pass
-        tput setaf 2; echo "Please run setup.sh {sambaConfig} to update the config"
+        data = "/dev/sda1       /media/USBDrive auto    uid=1000,gid=1000,noatime       0       0"
+        if grep -q $data /etc/fstab; then
+            tput setaf 1; echo "Entry already found in fstab"
+        else
+            echo $data >> /etc/fstab
+        fi
+        tput setaf 5; echo "Please set a samba password using sudo smbpasswd to finish setup"
+        
     fi
 }
 
