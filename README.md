@@ -1,26 +1,28 @@
-# ultimateBashScript
-The ultimate bash script for my Raspberry pi or anything else that has linux on it. Goal is to make one script that'll set everything up as I like it. This generally sets up screen, micro, samba for now. The script isn't perfect and doesn't have many checks that it should have, I'll update it as time goes, feel free to contribute useful changes I'll make sure to take it into consideration.
+# setupScript
 
-## Run Locally
+### This script started off just as a bash script but quickly got turned into a script for my raspberry pi, Arch and Manjaro installation along with windows too. Feel free to fork it and turn it into your own thing.
 
-Clone the project
+---
 
-```bash
-  git clone https://github.com/DNAMcKnight/ultimateBashScript
-```
+I have 3 folders for 3 different platforms, I have Arch, raspberry pi and windows and in those folders are the scripts to install software and some configuration file. 
 
-Go to the project directory
+## Arch
 
-```bash
-  cd ultimateBashScript
-```
+I'm fairly new to Arch Linux itself but I did use manjaro before that, so for now I have a manjaro script and a semi complete Arch linux `installation guide`.
 
-Using the script
+## Windows
+I have grown to hate windows but anything to make the reinstall easier is something I'm willing to take, I have a package list for `chocolatey` and another for `winget` choose whichever one you like more but they're both pretty bad if I am being honest. Inside that I also have the settings for my windows terminal and the font it uses.
 
-```bash
-  bash setup.sh
-```
+## Raspberry PI
+Something I realized pretty quickly after I messed up and had to reinstall the raspian OS is that reinstall is far more painful then it needs to be, some settings you just never remember, I just made bash scripts that take care of my `samba` setup, `autostart` scripts and a `fan controller`.
 
+---
+
+If any of these things are helpful feel free to fork my project and change it to your liking or feel free to suggest improvements I'm sure there are more than I think there are. Also this isn't meant to be something great, it's just my personal scripts that I don't mind sharing so treat it as that. 
+
+Thanks for reading! have a nice day.
+
+---
 
 ## Support
 
