@@ -86,23 +86,19 @@ My current mounts looks like this
 
 `mount /dev/sda1 /mnt/Downloads` Downloads
 
----
-
 # Base
-### Now we will install the base for linux using this command
+Now we will install the base for linux using this command
 
 
-## For intel
+### For intel
 ```bash
 pacstrap /mnt base linux linux-firmware nano git intel-ucode
 ```
 
-## For AMD
+### For AMD
 ```sh
 pacstrap /mnt base linux linux-firmware nano git amd-ucode
 ```
-
----
 
 # FSTAB
 `genfstab -U /mnt >> /mnt/etc/fstab`
@@ -112,8 +108,6 @@ This will create a fstab based on the UUID of the partitions.
 `cat /mnt/etc/fstab`
 
 To check the fstab file
-
----
 
 # Chroot
 Now we can enter the installation and leave the ISO installer using the command `arch-chroot /mnt`
@@ -131,8 +125,6 @@ Next we must add swapfile to fstab, add the following line at the end of `/etc/f
 ```
 /swapfile none swap defaults 0 0
 ```
-
----
 
 # Locate
 `timedatectl list-timezones | grep <country>` This command should filter the country results
@@ -156,8 +148,6 @@ echo "LANG=en_us.UTF-8" >> /etc/locale.conf
 ```
 If you have changed your keyboard layout you will need to do one more step `echo "KEYMAP="<whatever keymap you choose>" >> /etc/vconsole.conf`
 
----
-
 # Hostname
 open hostname and add a hostname `/etc/hostname` in this file
 
@@ -170,9 +160,6 @@ now open `/etc/hosts` and add the following end of the file
 `arch` being the hostname
 
 Now set a root password using `passwd`.
-
----
-
 # Grub
 We need to install the following packages there are 29 of them
 ```sh
@@ -188,7 +175,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ### Note: If you don't see windows bootloader, make sure secure boot in bios and fast startup in windows is turned off! 
 ### By default `os-prober` is turnned off make sure to turn it on in order to detect windows bootloader.
 
----
 
 # Services
 ### The following services need to be enabled
@@ -199,5 +185,29 @@ systemctl enable bluetooth
 systemctl enable org.cups.cupsd
 systemctl enable sshd
 ```
----
 # New User
+Replace `<username>` with the username of your own choice.
+```sh
+useradd -mG wheel <username>
+```
+Then set a password for it with this command
+```sh
+passwd <username>
+```
+Now use the command `EDITOR=nano visudo` and uncomment the line
+```sh
+%wheel ALL=(ALL) ALL
+```
+Save that and exit
+
+# Reboot
+Congratulations we're half way done! now before we reboot we should unmount all our drives with this command
+```sh
+unmount -a
+sudo reboot
+```
+Proceed with the reboot.
+
+
+
+
