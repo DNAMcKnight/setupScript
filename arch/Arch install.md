@@ -208,6 +208,58 @@ sudo reboot
 ```
 Proceed with the reboot.
 
+## Login using the newly created user. 
 
+# Internet 
+If you're using ethernet things should work out of the box however to setup wifi use `nmtui`
 
+# Graphics Drivers
+These drives are for x86 aka 64 bit systems only.
+For virtual machines use this command
+```sh
+sudo pacman -S xf86-video-qxl
+```
+For Intel HD Graphics
+```sh
+sudo pacman -S xf86-video-intel
+```
+For AMD Graphics cards
+```sh
+sudo pacman -S xf86-video-amdgpu
+```
+For Nvidia Graphics cards
+```sh
+sudo pacman -S nvidia nvidia-utils
+```
 
+# Display server
+Here's how I have mine setup
+
+```sh
+sudo pacman -S xorg
+```
+For kde we will use SDDM as the display manager
+```sh
+sudo pacman -S sddm
+sudo systemctl enable sddm
+```
+first to download sddm and second to enable at startup
+
+# Desktop
+I'm going to use plasma
+```sh
+sudo pacman -S plasma kde-applications packagekit-qts
+```
+# Fonts using yay
+Before we install fonts we need to get yay first.
+```sh
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si PKGBUILD
+yay -S ttf-ms-win11-auto
+```
+That should install yay and the fonts, if the fonts fail to install don't worry just run it all again.
+Restart into desktop to finish it off
+
+## Conngratulations you've successfully installed Arch linux, if you've had trouble with anything here please refer back to the video I used to install everything on my machine, this was just a guide for future me and anyone who has been looking for a step by step written guide.
+https://www.youtube.com/watch?v=L1B1O0R1IHA
